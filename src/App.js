@@ -1,5 +1,6 @@
 import "./App.css";
 import DisplayExpenses from "./components/Expenses/DisplayExpenses";
+import NewExpense from "./components/NewExpense/NewExpense";
 
 const App = () => {
   const expenses = [
@@ -30,12 +31,11 @@ const App = () => {
   ];
   return (
     <div className="App">
-      <header className="App-header">
-        {/*recordar que así son los comentarios*/}
-        <DisplayExpenses expenses={expenses} />
-      </header>
+      <NewExpense />
+      {/*recordar que así son los comentarios*/}
+      <DisplayExpenses expenses={expenses} />
     </div>
   );
-}
+};
 
 export default App;
