@@ -1,7 +1,7 @@
 import "./App.css";
-import DisplayExpenses from "./components/DisplayExpenses";
+import DisplayExpenses from "./components/Expenses/DisplayExpenses";
 
-function App() {
+const App = () => {
   const expenses = [
     {
       id: "e1",
