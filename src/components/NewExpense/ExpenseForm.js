@@ -34,12 +34,12 @@ const ExpenseForm = (props) => {
   };
 
   const submitHandler = (event) => {
-    event.preventDefault(); //Default request send
+    event.preventDefault(); //Default request send... Osea previene que recargue la página
 
     const expenseData = {
       title: enteredTitle,
       amount: enteredAmount,
-      date: new Date(enteredDate.replace(/-/g, '\/')), //console.log(myInput.valueAsDate = new Date(Date.UTC(1995, 0, 1)); esto no funciona
+      date: new Date(enteredDate.replace(/-/g, '\/'))
     };
 
     props.onSaveNewExpenseData(expenseData);
