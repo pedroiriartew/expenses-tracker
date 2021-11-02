@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import ExpenseItem from "./ExpenseItem";
+
 import "./DisplayExpenses.css";
 import Card from "../UI/Card";
 import ExpensesFilter from "./ExpensesFilter";
+import ExpensesList from "./ExpensesList";
 
 const DisplayExpenses = (props) => {
   const [filteredYear, setFilteredYear] = useState("2020");
@@ -11,20 +12,20 @@ const DisplayExpenses = (props) => {
     setFilteredYear(selectedYear);
   };
 
+  const filteredExpenses = props.expenses.filter(
+    (expense) => expense.date.getFullYear() === filteredYear
+  );
+
   return (
-    <Card className="expenses">
-      <ExpensesFilter
-        selected={filteredYear}
-        onChangeFilter={changeFilterHandler}
-      />
-      {props.expenses.map((expense) => ( //expense es un parámetro que le paso ala función map. Viene del array que estoy mapeando y es en si un item de ese array.
-        <ExpenseItem
-          title={expense.title}
-          price={expense.price}
-          date={expense.date}
+    <l>
+      <Card className="expenses">
+        <ExpensesFilter
+          selected={filteredYear}
+          onChangeFilter={changeFilterHandler}
         />
-      ))}
-    </Card>
+        <ExpensesList expenses={filteredExpenses} />
+      </Card>
+    </l>
   );
 };
 

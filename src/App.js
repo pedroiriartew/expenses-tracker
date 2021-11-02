@@ -7,25 +7,25 @@ const INITIAL_EXPENSES = [
   {
     id: "e1",
     title: "Toilet Paper",
-    price: 94.12,
+    amount: 94.12,
     date: new Date(2020, 7, 14),
   },
   {
     id: "e2",
     title: "New TV",
-    price: 799.49,
+    amount: 799.49,
     date: new Date(2021, 2, 12),
   },
   {
     id: "e3",
     title: "Car Insurance",
-    price: 294.67,
+    amount: 294.67,
     date: new Date(2021, 2, 28),
   },
   {
     id: "e4",
     title: "New Desk (Wooden)",
-    price: 450,
+    amount: 450,
     date: new Date(2021, 5, 12),
   },
 ];
@@ -33,7 +33,6 @@ const App = () => {
   const [expenses, setExpenses] = useState(INITIAL_EXPENSES);
 
   const addExpenseHandler = (expense) => {
-    console.log(expense.amount);
     setExpenses(prevExpenses =>{//Automáticamente por react obtenemos el anterior estado
       return [expense, ...prevExpenses];
     })
