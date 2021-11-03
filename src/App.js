@@ -1,48 +1,36 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import DisplayExpenses from "./components/Expenses/DisplayExpenses";
 import NewExpense from "./components/NewExpense/NewExpense";
+import { db } from "./components/firebase/config.js";
 
-const INITIAL_EXPENSES = [
-  {
-    id: "e1",
-    title: "Toilet Paper",
-    amount: 94.12,
-    date: new Date(2020, 7, 14),
-  },
-  {
-    id: "e2",
-    title: "New TV",
-    amount: 799.49,
-    date: new Date(2021, 2, 12),
-  },
-  {
-    id: "e3",
-    title: "Car Insurance",
-    amount: 294.67,
-    date: new Date(2021, 2, 28),
-  },
-  {
-    id: "e4",
-    title: "New Desk (Wooden)",
-    amount: 450,
-    date: new Date(2021, 5, 12),
-  },
-];
 const App = () => {
-  const [expenses, setExpenses] = useState(INITIAL_EXPENSES);
+  const [expenses, setExpenses] = useState({});
+
+  const readDatabase = async () => {
+    const expensesRef = (await db.ref("Expenses").get()).val() || []; //get obtiene el array, val los valores
+    setExpenses(expensesRef);
+  };
+
+  useEffect(() => {
+    //UseEffect se ejecuta cuando se inicializa el componente o cuando se cambia alguna de sus dependencias; este no tiene dependencias
+    readDatabase();
+  });
 
   const addExpenseHandler = (expense) => {
-    setExpenses(prevExpenses =>{//Automáticamente por react obtenemos el anterior estado
+    setExpenses((prevExpenses) => {
+      //Automáticamente por react obtenemos el anterior estado
       return [expense, ...prevExpenses];
-    })
-  }
-
+    });
+  };
 
   return (
     <div className="App">
-      <NewExpense onAddExpense={addExpenseHandler}/>
-      <DisplayExpenses expenses={expenses} />
+      <NewExpense onAddExpense={addExpenseHandler} />
+      {
+        console.log(expenses)
+        //<DisplayExpenses expenses={expenses} />
+      }
     </div>
   );
 };
