@@ -42,7 +42,6 @@ const App = () => {
   return (
     <div className="App">
       <NewExpense onAddExpense={addExpenseHandler}/>
-      {/*recordar que así son los comentarios*/}
       <DisplayExpenses expenses={expenses} />
     </div>
   );
