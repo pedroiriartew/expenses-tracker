@@ -7,18 +7,14 @@ import ExpensesList from "./ExpensesList";
 import ExpensesChart from "./ExpensesChart";
 
 const DisplayExpenses = (props) => {
-  const [filteredYear, setFilteredYear] = useState("2020");
+  const [filteredYear, setFilteredYear] = useState("2021");
 
   const changeFilterHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
 
-  if (props.expenses) {
-    console.log(props.expenses)
-  }
-
   const filteredExpenses = props.expenses.filter(
-    (expense) => expense.date.getFullYear().toString() === filteredYear
+    (expense) => expense.date.includes(filteredYear)
   );
 
   return (

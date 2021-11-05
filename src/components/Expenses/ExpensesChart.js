@@ -18,7 +18,8 @@ const ExpensesChart = (props) => {
   ];
 
   for (const expense of props.expenses) { //Cambio los valores de los meses según el año filtrado
-    const expenseMonth = expense.date.getMonth(); //getMonth arranca en 0
+    const expenseDate = new Date(expense.date);
+    const expenseMonth = expenseDate.getMonth();
     chartDataPoints[expenseMonth].value += expense.amount;
   }
 

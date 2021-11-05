@@ -5,7 +5,7 @@ import NewExpense from "./components/NewExpense/NewExpense";
 import { db } from "./components/firebase/config.js";
 
 const App = () => {
-  const [expenses, setExpenses] = useState([]);
+  const [expenses, setExpenses] = useState([]); //este lo entiendo, tengo que pasarle un array vacío así sabe que le tiene que llegar
 
   const readDatabase = async () => {
     const expensesRef = (await db.ref("Expenses").get()).val() || []; //get obtiene el array, val los valores
@@ -15,7 +15,7 @@ const App = () => {
   useEffect(() => {
     //UseEffect se ejecuta cuando se inicializa el componente o cuando se cambia alguna de sus dependencias; este no tiene dependencias
     readDatabase();
-  }, []);
+  }, []); //si no va a tener dependencias, va así.
 
   const addExpenseHandler = (expense) => {
     setExpenses((prevExpenses) => {
@@ -27,10 +27,7 @@ const App = () => {
   return (
     <div className="App">
       <NewExpense onAddExpense={addExpenseHandler} />
-      {
-        console.log(expenses)
-        //<DisplayExpenses expenses={expenses} />
-      }
+      <DisplayExpenses expenses={expenses} />
     </div>
   );
 };
