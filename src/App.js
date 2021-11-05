@@ -5,7 +5,7 @@ import NewExpense from "./components/NewExpense/NewExpense";
 import { db } from "./components/firebase/config.js";
 
 const App = () => {
-  const [expenses, setExpenses] = useState({});
+  const [expenses, setExpenses] = useState([]);
 
   const readDatabase = async () => {
     const expensesRef = (await db.ref("Expenses").get()).val() || []; //get obtiene el array, val los valores
@@ -15,7 +15,7 @@ const App = () => {
   useEffect(() => {
     //UseEffect se ejecuta cuando se inicializa el componente o cuando se cambia alguna de sus dependencias; este no tiene dependencias
     readDatabase();
-  });
+  }, []);
 
   const addExpenseHandler = (expense) => {
     setExpenses((prevExpenses) => {
